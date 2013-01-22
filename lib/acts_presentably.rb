@@ -3,10 +3,22 @@ require 'acts_presentably/version'
 require 'acts_presentably/presenters/default_presenter'
 
 module ActsPresentably
-  def acts_presentably
-    include InstanceMethods
+  extend ActiveSupport::Concern
+
+  included do
   end
-  module InstanceMethods
+
+  def presentable?
+    false
+  end
+
+  module ClassMethods
+    def acts_presentably
+      include MixinMethods
+    end
+  end
+
+  module MixinMethods
     def presentable?
       true
     end
@@ -28,4 +40,4 @@ module ActsPresentably
   end
 end
 
-ActiveRecord::Base.extend ActsPresentably
+ActiveRecord::Base.send(:include, ActsPresentably)

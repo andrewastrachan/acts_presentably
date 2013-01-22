@@ -26,7 +26,7 @@ The easiest way to setup your presenter is to define its "fields" and any "assoc
     end
 
 
-For maximum flexibility simply override ```as_json```. 
+For maximum flexibility simply override ```as_json```.
 @object is the object you're creating the json for, and is available in all methods.
 
 You can even specify a different presentation name for your attribute:
@@ -37,7 +37,7 @@ You can even specify a different presentation name for your attribute:
           :name => @object.title
         }
       end
-        
+
     end
 
 
@@ -52,6 +52,13 @@ Now you can run...
     @post = Post.new(:title => 'First Post', :text => 'Annoying first post')
     @post.to_json
     @post.to_json(:post_presenter => PostAlternativePresenter )
+
+
+Finally, if you're not sure whether a model will act presentably, simply ask it:
+    @post.presentable?
+    => true
+    @hipster.presentable?
+    => false
 
 ## Contributing
 

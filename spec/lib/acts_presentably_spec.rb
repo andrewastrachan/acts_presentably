@@ -30,4 +30,8 @@ describe "acts_presentably" do
       end
     end
   end
+  context "A model that is not presentable" do
+    subject { Hipster.new }
+    it { should_not be_presentable }
+  end
 end
