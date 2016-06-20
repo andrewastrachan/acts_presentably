@@ -8,7 +8,7 @@ describe "acts_presentably" do
     end
     context "is extended" do
       it "#presentable? returns true" do
-        @post.presentable?.should be_true
+        @post.presentable?.should be_truthy
       end
       it "#presenter_class" do
         @post.presenter_class.should == 'PostPresenter'
@@ -26,7 +26,7 @@ describe "acts_presentably" do
         @post.as_json(:post_presenter => PostAlternativePresenter)[:name].should == @post.title
       end
       it "gives default behavior when no presenter class exists" do
-        @author.as_json.should == "null"
+        @author.as_json.should == nil
       end
     end
   end
